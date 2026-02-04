@@ -1,0 +1,75 @@
+from Bio import SeqIO
+
+# Read the sequence
+record =SeqIO.read("hypothetical_seq.fasta", "fasta")
+seq= record.seq
+
+# Print sequence length
+print("Sequence length:", len(seq))
+
+# Amino acid composition
+print("Amino acid composition:")
+aa_seq = set(seq)
+for aa in aa_seq:
+    print(aa, seq.count(aa))
+
+# Sequence filtering
+# filtering very short sequence
+if len(seq) < 50:
+    print("Sequence is too short and removed.")
+else:
+    print("Sequence length is acceptable.")
+
+# filtering sequences with unknown amino acids (X)
+if "X" in seq:
+    print("Sequence contains unknown amino acids (X).")
+else:
+    print("No unknown amino acids found.")
+
+# filtering sequences with stop codons(*)
+if "*" in seq:
+    print("Sequence contains stop codons (*).")
+else:
+    print("No stop codons found.")
+
+# validation
+if len(seq) >= 50 and "X" not in seq and "*" not in seq:
+    print("Sequence is suitable for downstream analysis.")
+else:
+    print("Sequence is NOT suitable for downstream analysis.")
+
+from Bio.Blast import NCBIWWW, NCBIXML
+# Run BLAST for protein
+result_handle = NCBIWWW.qblast(
+    program="blastp",
+    database="nr",
+    sequence=record.seq)
+
+with open("blast_results.xml", "w") as b:
+    b.write(result_handle.read())
+
+print("BLAST performed successfully")
+
+# Homology Search
+with open ("blast_results.xml") as b:
+    blast_record=NCBIXML.read(b)
+
+print ("Top homologs")
+for alignment in blast_record.alignments[:5]:
+    hsp = alignment.hsps[0]
+    print("Protein:", alignment.title)
+    print("Identity:", hsp.identities, "hsp length", hsp.align_length)
+    print("E-value:", hsp.expect)
+
+# Functional Annotation
+with open("results/functional_annotation.txt", "w") as f:
+    f.write("Functional Annotation Summary\n")
+    for alignment in blast_record.alignments[:5]:
+        hsp = alignment.hsps[0]
+        f.write("Hit description:")
+        f.write(alignment.title + "\n")
+        f.write("E-value: " + str(hsp.expect) + "\n")
+        f.write("Identity: " + str(hsp.identities) + "/" + str(hsp.align_length) + "\n\n")
+
+print("Functional annotation file created")
+print ("____THANK YOU!!____")
