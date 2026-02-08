@@ -1,4 +1,4 @@
-# biopython-capstone-project
+# biopython-hypothetical-protein-analysis
 **Overview:**
 Computational analysis and functional annotation of a hypothetical viral protein using Biopython, BLAST, and domain-based inference. The project follows a step-by-step sequence-to-function pipeline including sequence quality assessment, homology search, and biological interpretation.
 
@@ -10,7 +10,6 @@ The presence of the DUF2460 domain indicates that the protein is likely to play 
 These observations support the prediction that the protein may be involved in essential viral or host-interaction processes, warranting further experimental investigation.
 
 **Learning Outcomes:**
-Through this project, I learned:
 1. How to retrieve and handle biological sequences from public databases
 2. How to perform sequence quality checks and homology searches
 3. How to interpret BLAST results for functional inference
