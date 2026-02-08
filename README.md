@@ -2,6 +2,9 @@
 **Overview:**
 Computational analysis and functional annotation of a hypothetical viral protein using Biopython, BLAST, and domain-based inference. The project follows a step-by-step sequence-to-function pipeline including sequence quality assessment, homology search, and biological interpretation.
 
+**Sequence Detail:**
+The sequence used in this project is a conserved hypothetical viral protein containing the DUF2460 domain. It was chosen to explore how computational tools can be used to analyze and interpret uncharacterized sequences using homology and domain conservation.
+
 **Biological Interpretation:**
 The analyzed sequence represents a conserved hypothetical viral protein containing the DUF2460 domain. 
 Sequence quality analysis confirmed that the protein has an appropriate length and composition, indicating good sequence quality.
@@ -20,5 +23,5 @@ These observations support the prediction that the protein may be involved in es
 6. How to learn and apply coding concepts beyond classroom teaching through hands-on problem solving
 7. How to document a scientific project clearly using GitHub and README files
 
-**Conclusion**
+**Conclusion:**
 This project demonstrates how a hypothetical viral protein can be systematically analyzed using bioinformatics tools to generate meaningful biological insights, even in the absence of prior functional characterization.
